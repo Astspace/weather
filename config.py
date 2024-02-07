@@ -7,6 +7,3 @@ OPENWEATHER_URL = (
     "appid=" + OPENWEATHER_API + "&lang=ru&"
     "units=metric"
 )
-
-# Задачка:
-#

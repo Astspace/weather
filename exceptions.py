@@ -5,3 +5,7 @@ class CantGetCoordinates(Exception):
 class ApiSreviceError(Exception):
     '''Программа не может получить погоду'''
     pass
+
+class WeatherFormatError(Exception):
+    '''Программа не может преобразовать данные о погоде'''
+    pass
