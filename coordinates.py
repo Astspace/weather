@@ -59,7 +59,7 @@ def _coord_list(coordinates_output: str) -> Coordinates:
         raise CantGetCoordinates("Некорректно получены координаты")
     return _format_coordinates(coordinates_list)
 
-def _format_coordinates(coordinates_list: list[str, str]) -> Coordinates:
+def _format_coordinates(coordinates_list: list[str]) -> Coordinates:
     coordinates = Coordinates(
         latitude=float(coordinates_list[0]),
         longitude=float(coordinates_list[1])
