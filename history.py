@@ -16,3 +16,16 @@ class TxtFileWeatherStorage:
     def save(self, weather: Weather) -> None:
         now = datetime.now()
         formatted_weather = format_weather(weather)
+        with open(self._file, "a") as f:
+            f.write(f"Время запроса погоды: {now}\n"
+                    f"{formatted_weather}\n")
+
+def save_weather(weather: Weather, storage: WeatherStorage) -> None:
+    storage.save(weather)
+
+class JSONFileWeatherStorage:
+    def __init__(self, jsonfile: Path):
+        self._jsonfile = jsonfile
+
+    def save(self, weather: Weather) -> None:
+        with open(self._jsonfile, "r") as f:
