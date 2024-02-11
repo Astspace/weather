@@ -12,14 +12,14 @@ class WeatherStorage(Protocol):
         raise NotImplementedError
 
 class TxtFileWeatherStorage:
-    def __int__(self, file: Path):
+    def __init__(self, file: Path):
         self._file = file
 
     def save(self, weather: Weather) -> None:
         now = datetime.now()
         formatted_weather = format_weather(weather)
         with open(self._file, "a") as f:
-            f.write(f"Время запроса погоды: {now}\n"
+            f.write(f"Время запроса погоды: {now}"
                     f"{formatted_weather}\n")
 
 def save_weather(weather: Weather, storage: WeatherStorage) -> None:
