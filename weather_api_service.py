@@ -9,9 +9,10 @@ from enum import Enum
 from datetime import datetime
 from typing import Literal, TypeAlias
 from dataclasses import dataclass
+import pprint
 
 Celcius: TypeAlias = float
-MeterInSec: TypeAlias = float
+MeterInSec: TypeAlias = float | str
 
 class WeatherType(Enum):
     THUNDERSTORM = "Гроза"
@@ -55,15 +56,25 @@ def _convert_openweather_dict(openweather_response: bytes) -> dict:
     return openweather_dict
 
 def _parse_weather(openweather_dict: dict) -> Weather:
+    temperature = _parse_temperature(openweather_dict)
+    weather_type = _parse_weather_type(openweather_dict)
+    sunrise = _parse_sun_time(openweather_dict, "sunrise")
+    sunset = _parse_sun_time(openweather_dict, "sunset")
+    city = _parse_city(openweather_dict)
+    wind_speed = _parse_wind_speed(openweather_dict, "speed")
+    if openweather_dict["wind"].get("gust", 0) != 0:
+        wind_speed_gust = str(_parse_wind_speed(openweather_dict, "gust")) + " м/с"
+    else:
+        wind_speed_gust = "Не определена"
     return Weather(
-        temperature=_parse_temperature(openweather_dict),
-        weather_type=_parse_weather_type(openweather_dict),
-        sunrise=_parse_sun_time(openweather_dict, "sunrise"),
-        sunset=_parse_sun_time(openweather_dict, "sunset"),
-        city=_parse_city(openweather_dict),
-        wind_speed=_parse_wind_speed(openweather_dict, "speed"),
-        wind_speed_gust=_parse_wind_speed(openweather_dict, "gust"))
-
+        temperature=temperature,
+        weather_type=weather_type,
+        sunrise=sunrise,
+        sunset=sunset,
+        city=city,
+        wind_speed=wind_speed,
+        wind_speed_gust=wind_speed_gust
+    )
 
 def _parse_temperature(openweather_dict: dict) -> Celcius:
     try:
@@ -115,4 +126,4 @@ def _parse_wind_speed(
 
 
 if __name__ == "__main__":
-    print(get_weather(Coordinates(latitude=64.6, longitude=39.8)))
+    pprint.pprint(get_weather(Coordinates(latitude=64.6, longitude=39.8)))

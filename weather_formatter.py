@@ -8,7 +8,7 @@ def format_weather(weather: Weather) -> str:
                 f"Город - {weather.city}\n"
             f"Температура: {weather.temperature} °C\n"
             f"Скорость ветра: {weather.wind_speed} м/с\n"
-            f"Скорость порывов ветра: {weather.wind_speed_gust} м/с\n"
+            f"Скорость порывов ветра: {weather.wind_speed_gust}\n"
             f"Восход солнца: {weather.sunrise.strftime('%H:%M')}\n"
             f"Заход солнца: {weather.sunset.strftime('%H:%M')}\n")
     except Exception:
