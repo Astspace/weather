@@ -17,11 +17,12 @@ def main():
     except ApiSreviceError:
         print(f"Не удалось получить погоду по координатам {coordinates}")
         exit(1)
-    print(format_weather(weather))
 
     save_weather(weather,
                  TxtFileWeatherStorage(Path.cwd() / 'history.txt')
                  )
 
+    return format_weather(weather)
+
 if __name__ == "__main__":
-    main()
+    print(main())
