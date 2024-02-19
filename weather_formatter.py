@@ -1,5 +1,6 @@
 from weather_api_service import Weather
 from exceptions import WeatherFormatError
+from datetime import datetime
 
 
 def format_weather(weather: Weather) -> str:
@@ -10,14 +11,15 @@ def format_weather(weather: Weather) -> str:
             f"Скорость ветра: {weather.wind_speed} м/с\n"
             f"Скорость порывов ветра: {weather.wind_speed_gust}\n"
             f"Восход солнца: {weather.sunrise.strftime('%H:%M')}\n"
-            f"Заход солнца: {weather.sunset.strftime('%H:%M')}\n")
+            f"Заход солнца: {weather.sunset.strftime('%H:%M')}\n"
+            f"Время запроса: {datetime.now()}\n"
+                )
     except Exception:
         raise WeatherFormatError("Невозможно преобразовать данные о погоде")
 
 
 if __name__ == "__main__":
     '''test'''
-    from datetime import datetime
     from weather_api_service import WeatherType
     print(format_weather(Weather(
         temperature=25,
