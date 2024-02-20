@@ -3,6 +3,7 @@ from weather import main as go_weather
 from PyQt6.QtGui import QFont
 from PyQt6.QtWidgets import QApplication, QLabel, QPushButton, QWidget
 from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import QSize, Qt
 
 
 class MainWindow(QWidget):
@@ -36,7 +37,7 @@ class MainWindow(QWidget):
             self.label_weather.show()
             self.button.setText("Обновить данные")
             self.button_clicked_count += 1
-            self._load_images("3.png")
+            self._load_images("4.png")
 
         else:
             self.label_weather.deleteLater()
@@ -45,7 +46,7 @@ class MainWindow(QWidget):
             self.label_weather.move(10, 500)
             self.label_weather.show()
             self.button.setText("Обновить данные")
-            self._load_images("3.png")
+            self._load_images("4.png")
 
     def _load_image_background(self, file_name: str) -> None:
         image = QPixmap(file_name)
@@ -55,12 +56,11 @@ class MainWindow(QWidget):
         print(image.width(), image.height())
 
     def _load_images(self, file_name: str):
-        image1 = QPixmap(file_name)
+        image1 = (QPixmap(file_name).scaled(600, 400, Qt.AspectRatioMode.KeepAspectRatio))
         label_image1 = QLabel(self)
         label_image1.setPixmap(image1)
-        label_image1.resize(image1.width(), image1.height())
         label_image1.show()
-        label_image1.move(-900, -500)
+        label_image1.move(0, 0)
 
 def main():
     app = QApplication(sys.argv)
