@@ -9,7 +9,7 @@ class MainWindow(QWidget):
     button_clicked_count = 0
     def __init__(self):
         super().__init__()
-        self._load_images('zastavka.jpg')
+        self._load_image_background('zastavka.jpg')
         self._buttons()
         self._labels()
         self._window_settings()
@@ -36,6 +36,8 @@ class MainWindow(QWidget):
             self.label_weather.show()
             self.button.setText("Обновить данные")
             self.button_clicked_count += 1
+            self._load_images("3.png")
+
         else:
             self.label_weather.deleteLater()
             self.label_weather = QLabel(go_weather(), self)
@@ -43,13 +45,22 @@ class MainWindow(QWidget):
             self.label_weather.move(10, 500)
             self.label_weather.show()
             self.button.setText("Обновить данные")
+            self._load_images("3.png")
 
-    def _load_images(self, file_name: str) -> None:
-        self.image = QPixmap(file_name)
-        self.label_image = QLabel(self)
-        self.label_image.setPixmap(self.image)
-        self.label_image.resize(self.image.width(), self.image.height())
+    def _load_image_background(self, file_name: str) -> None:
+        image = QPixmap(file_name)
+        label_image = QLabel(self)
+        label_image.setPixmap(image)
+        label_image.resize(image.width(), image.height())
+        print(image.width(), image.height())
 
+    def _load_images(self, file_name: str):
+        image1 = QPixmap(file_name)
+        label_image1 = QLabel(self)
+        label_image1.setPixmap(image1)
+        label_image1.resize(image1.width(), image1.height())
+        label_image1.show()
+        label_image1.move(-900, -500)
 
 def main():
     app = QApplication(sys.argv)
