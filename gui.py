@@ -31,11 +31,11 @@ class MainWindow(QWidget):
 
     def _button_clicked(self) -> None:
         if self.button_clicked_count == 0:
-            self._get_data_weather()
-            self._load_images("4.png", 600, 600, 0, 250)
+            self._load_images("4.png", 470, 470, -10, 180)
             self._load_images("5.png", 250, 150, 330, 50)
             self._load_images("3.png", 450, 350, 830, 10)
-            self._load_images("1.png", 450, 350, 0, -30)
+            self._load_images("1.png", 400, 300, 25, -65)
+            self._get_data_weather()
         else:
             self.label_weather.deleteLater()
             self._get_data_weather()
@@ -63,8 +63,8 @@ class MainWindow(QWidget):
 
     def _get_data_weather(self) -> None:
         self.label_weather = QLabel(go_weather(), self)
-        self.label_weather.setFont(QFont('Cambria', 15))
-        self.label_weather.move(10, 500)
+        self.label_weather.setFont(QFont('Cambria', 13))
+        self.label_weather.move(70, 210)
         self.label_weather.show()
         self.button.setText("Обновить данные")
         self.button_clicked_count += 1

@@ -12,7 +12,7 @@ def format_weather(weather: Weather) -> str:
             f"Скорость порывов ветра: {weather.wind_speed_gust}\n"
             f"Восход солнца: {weather.sunrise.strftime('%H:%M')}\n"
             f"Заход солнца: {weather.sunset.strftime('%H:%M')}\n"
-            f"Время запроса: {datetime.now()}\n"
+            f"Время запроса: {str(datetime.now()).split('.')[0]}\n"
                 )
     except Exception:
         raise WeatherFormatError("Невозможно преобразовать данные о погоде")
