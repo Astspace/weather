@@ -5,14 +5,14 @@ from datetime import datetime
 
 def format_weather(weather: Weather) -> str:
     try:
-        return (f"\nДАННЫЕ О ПОГОДЕ:\n"
+        return (
                 f"Город - {weather.city}\n"
-            f"Температура: {weather.temperature} °C\n"
-            f"Скорость ветра: {weather.wind_speed} м/с\n"
-            f"Скорость порывов ветра: {weather.wind_speed_gust}\n"
-            f"Восход солнца: {weather.sunrise.strftime('%H:%M')}\n"
-            f"Заход солнца: {weather.sunset.strftime('%H:%M')}\n"
-            f"Время запроса: {str(datetime.now()).split('.')[0]}\n"
+                f"Температура: {weather.temperature} °C\n"
+                f"Скорость ветра: {weather.wind_speed} м/с\n"
+                f"Скорость порывов ветра: {weather.wind_speed_gust}\n"
+                f"Восход солнца: {weather.sunrise.strftime('%H:%M')}\n"
+                f"Заход солнца: {weather.sunset.strftime('%H:%M')}\n"
+                f"Время запроса: {str(datetime.now()).split('.')[0]}\n"
                 )
     except Exception:
         raise WeatherFormatError("Невозможно преобразовать данные о погоде")
